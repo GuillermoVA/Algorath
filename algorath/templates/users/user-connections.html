@@ -1,0 +1,70 @@
+<!-- head para PC -->
+{% extends "users/base_users.html" %}
+{% load  static %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="cell" style="text-align: center;">
+  <h1>Users connected with {{user.name}}</h1>
+</div>
+<div class="cell large-8">
+  
+  <table style="vertical-align: center; text-align: center;">
+    <thead>
+      <tr>
+        <th style="vertical-align: center; text-align: center;">ID</th>
+        <th style="vertical-align: center; text-align: center;">NAMES</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in connections %}
+      <tr>
+        <td>{{c.id}}</td>
+        <td>{{c.name}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+    
+    {% if is_paginated %}
+      
+    <nav aria-label="Pagination">
+      <ul class="pagination">
+        
+        
+        {% if page_obj.has_previous %}
+        
+            <li class="pagination-previous">
+              <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+            </li> 
+        {% endif %}
+  
+        
+        {% for pagina in paginator.page_range %}
+  
+        
+        {% ifequal pagina page_obj.number  %} 
+          <li class="current"><span class="show-for-sr">You're on page</span>{{pagina}}</li>
+        {% else %}
+           <li><a href="?page={{pagina}}">{{pagina}}</a></li>
+        
+        {% endifequal %}
+          
+        {% endfor %}
+          
+        {% if page_obj.has_next %}
+          <li class="pagination-next">
+            <a href="?page={{page_obj.next_page_number}}">Next</a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+      
+    {% endif %}
+  </div>
+
+{% endblock content %}

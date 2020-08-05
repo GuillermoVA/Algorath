@@ -1,0 +1,32 @@
+<!-- head para PC -->
+{% extends "users/base_users.html" %}
+{% load  static %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="grid-container">
+    <div class="grid-x grid-margin-x align-center">
+        <div class="cell medium-10 large-6" style="margin-top: 2em;">
+            <div class="card" style="width: 100%;">
+                <div class="card-divider">
+                  <h4>Enter user information</h4>
+                </div>
+                <div class="card-section">
+                    <form class="grid-x grid-margin-x" method="POST" enctype="multipart/form-data">{% csrf_token %}
+            
+                        <div class="cell large-12">
+                            <label>Name:
+                            {{form.name}}
+                            </label>
+                        
+                        <button type="submit" class="cell hollow button primary">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
